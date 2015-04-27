@@ -1,8 +1,4 @@
-"""
-Munch : A programmatic interface to Munchery.com
-
-Chris Hiszpanski <chiszp@gmail.com>
-"""
+"""Munch : A programmatic interface to Munchery.com"""
 
 import json
 import re
