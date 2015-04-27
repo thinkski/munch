@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+
+"""Munch: A programmatic interface to http://munchery.com"""
+
+import argparse
+import json
+import sys
+
+from munchery import munchery
+
+def main():
+    parser = argparse.ArgumentParser(
+        description='Command line interface to http://munchery.com')
+    parser.add_argument("--zipcode", type=str, default="90210",
+                        help="Postal ZIP code")
+    args =parser.parse_args()
+
+    mnch = munchery.Munchery()
+
+    # Set the ZIP code. Catch if not supported.
+    try:
+        mnch.set_zipcode(args.zipcode)
+    except munchery.UnsupportedZipCode:
+        print 'Alas, Munchery does not delivery to {0}'.format(args.zipcode)
+        sys.exit(0)
+ 
+    print json.dumps(mnch.get_menu(), sort_keys=True, indent=4, separators=(',', ': '))
+
+if __name__ == '__main__':
+    main()
