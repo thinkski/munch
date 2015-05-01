@@ -24,7 +24,7 @@ This will return JSON data with the menu. You can then parse this with your own 
     with open("menu.json", "r") as f:
         data = json.load(f)
     
-    for section in d['menu']['sections']:
+    for section in data['menu']['sections']:
         for item in section['items']:
             price = float(item['price']['dollars']) + float(item['price']['cents']) / 100
             name = item['name']
